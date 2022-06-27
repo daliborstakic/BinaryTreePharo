@@ -8,6 +8,15 @@ Class {
 }
 
 { #category : #tests }
+BinaryTreeTest >> testDepth [
+	| c |
+	c := BinaryTree new.
+	self assert: c depth equals: -1.
+	c add: 1.
+	self assert: c depth equals: 0
+]
+
+{ #category : #tests }
 BinaryTreeTest >> testRoot [
 	| c |
 	c := BinaryTree new.

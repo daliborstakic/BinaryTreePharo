@@ -25,6 +25,26 @@ BinaryTree >> add: anObject node: aBTNode [
 		ifTrue: [ self error: 'key already exists' ]
 ]
 
+{ #category : #accessing }
+BinaryTree >> depth [
+	self root ifNil: [ ^ -1 ].
+	^ self depth: self root
+]
+
+{ #category : #accessing }
+BinaryTree >> depth: aBTNode [
+	| leftDepth rightDepth |
+	leftDepth := -1.
+	rightDepth := -1.
+	aBTNode left
+		ifNotNil: [ :arg | leftDepth := self depth: aBTNode left ].
+	aBTNode right
+		ifNotNil: [ :arg | rightDepth := self depth: aBTNode right ].
+	leftDepth > rightDepth
+		ifTrue: [ ^ leftDepth + 1 ]
+		ifFalse: [ ^ rightDepth + 1 ]
+]
+
 { #category : #testing }
 BinaryTree >> isEmpty [ 
 	^ self root isNil 
