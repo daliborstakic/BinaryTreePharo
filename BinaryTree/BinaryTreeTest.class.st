@@ -8,6 +8,24 @@ Class {
 }
 
 { #category : #tests }
+BinaryTreeTest >> testBFS [
+	| c |
+	c := BinaryTree setRoot: (BTNode with: 1).
+	c add: 2.
+	c add: 3.
+	self assert: (c bfs: 2) info equals: 2
+]
+
+{ #category : #tests }
+BinaryTreeTest >> testDFS [
+	| c |
+	c := BinaryTree setRoot: (BTNode with: 1).
+	c add: 2.
+	c add: 3.
+	self assert: (c dfs: 2) info equals: 2
+]
+
+{ #category : #tests }
 BinaryTreeTest >> testDepth [
 	| c |
 	c := BinaryTree new.
@@ -22,6 +40,13 @@ BinaryTreeTest >> testRoot [
 	c := BinaryTree new.
 	c root: (BTNode with: 5).
 	self assert: c root info equals: 5 
+]
+
+{ #category : #tests }
+BinaryTreeTest >> testSetRoot [
+	| c |
+	c := BinaryTree setRoot: (BTNode with: 5).
+	self assert: c root info equals: 5
 ]
 
 { #category : #tests }
