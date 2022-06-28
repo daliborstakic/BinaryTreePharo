@@ -46,6 +46,27 @@ BinaryTree >> bfs: anObject [
 	^ nil
 ]
 
+{ #category : #public }
+BinaryTree >> delete: anObject [
+	self root: (self delete: anObject node: self root)
+]
+
+{ #category : #public }
+BinaryTree >> delete: anObject node: aBTNode [
+	| temp |
+	temp := aBTNode.
+	temp ifNil: [ ^ temp ].
+	(anObject < temp info)
+		ifTrue: [ temp left: (self delete: anObject node: temp left) ];
+		ifFalse: [ (temp info > anObject)
+					ifTrue: [ temp right: (self delete: anObject node: temp right) ];
+					ifFalse: [ temp left ifNil: [ ^ temp right ].
+							temp right ifNil: [ ^ temp left ].
+							temp info: (self minValue: temp right).
+							temp right: (self delete: anObject node: temp right) ] ].
+	^ temp
+]
+
 { #category : #accessing }
 BinaryTree >> depth [
 	self root ifNil: [ ^ -1 ].
@@ -91,6 +112,19 @@ BinaryTree >> dfs: anObject node: aBTNode [
 { #category : #testing }
 BinaryTree >> isEmpty [ 
 	^ self root isNil 
+]
+
+{ #category : #accessing }
+BinaryTree >> minValue: aBTNode [
+	| min temp |
+	temp := aBTNode.
+	min := temp info.
+	[ temp left ] whileNotNil: [ 
+		min := temp left info.
+		 temp := temp left
+	].
+
+	^ min
 ]
 
 { #category : #accessing }

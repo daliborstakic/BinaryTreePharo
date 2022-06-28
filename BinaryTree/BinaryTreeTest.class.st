@@ -26,6 +26,18 @@ BinaryTreeTest >> testDFS [
 ]
 
 { #category : #tests }
+BinaryTreeTest >> testDelete [
+	| c |
+	c := BinaryTree new.
+	c add: 1.
+	c add: 2.
+	c add: 3.
+	self assert: c size equals: 3.
+	c delete: 2.
+	self assert: c size equals: 2
+]
+
+{ #category : #tests }
 BinaryTreeTest >> testDepth [
 	| c |
 	c := BinaryTree new.
