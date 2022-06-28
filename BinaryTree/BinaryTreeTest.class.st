@@ -47,6 +47,15 @@ BinaryTreeTest >> testDepth [
 ]
 
 { #category : #tests }
+BinaryTreeTest >> testIsEmpty [
+	| c |
+	c := BinaryTree new.
+	self assert: c isEmpty.
+	c add: 2.
+	self deny: c isEmpty  
+]
+
+{ #category : #tests }
 BinaryTreeTest >> testRoot [
 	| c |
 	c := BinaryTree new.
